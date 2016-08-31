@@ -1,4 +1,4 @@
-# OpenCV
+# OpenCV (Work in Progress)
 eclipse: 
 Kepler Release 2 for rcp/rap developer.
 Install swing designer from the kepler repo.
