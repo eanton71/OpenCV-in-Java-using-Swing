@@ -4,30 +4,14 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
-
 import javax.swing.JFrame;
-
-import org.opencv.core.Core;
-import org.opencv.core.CvType;
 import org.opencv.core.Mat;
-import org.opencv.highgui.Highgui;
 import org.opencv.highgui.VideoCapture;
-
 import javax.swing.JButton;
-import javax.swing.JPanel;
-
 import java.awt.Canvas;
-import java.io.File;
-
-import javax.imageio.ImageIO;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageOp;
 import java.awt.image.DataBufferByte;
 
 
@@ -92,37 +76,6 @@ public class MainOpenCV {
 		
 		camIsRunning = false;
 	}
-
-	
-	private class CameraGrabber {
-		private	VideoCapture Camera;
-		private int fps;
-
-		
-		public CameraGrabber() { }
-		public CameraGrabber(int whichCamera, int fps) {
-			Camera = new VideoCapture(0);
-			Camera.open(whichCamera);
-			this.fps = 1000/fps;
-			try {
-				Thread.sleep(1000);
-			} catch (Exception e) {
-				
-			}
-		}
-		public boolean isOpen() {
-			return (Camera.isOpened());
-		}
-		public Mat Capture() {
-			Mat frame = new Mat();
-			Camera.read(frame);
-			return frame;
-		}
-		public void Close() {
-			Camera.release();
-		}
-		
-	}
 	
 	private class MyCanvas extends Canvas {
 		 private BufferedImage img = null;
@@ -178,7 +131,7 @@ public class MainOpenCV {
 								objCanvas.repaint();
 								
 								try {
-									Thread.sleep(objGrabber.fps);
+									Thread.sleep(objGrabber.CameraGetFps());
 								} catch (Exception e) {
 									
 								}
