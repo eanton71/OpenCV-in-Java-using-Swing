@@ -16,8 +16,8 @@ add opencv to eclipse by following http://docs.opencv.org/2.4/doc/tutorials/intr
 
 What it does:
 1. Open camera using opencv and draw the contents in an awt canvas. 
-2. It doesnt do any image processing yet.
+2. Do some image processing (on button press).
 
-TODO:
-Add imageprocessing. 
-Canny isnt really working, just a placeholder for now. 
+
+Image processing supported:
+1. Canny.
