@@ -1,5 +1,5 @@
 # Work in Progress
-# OpenCV in Java
+# OpenCV in Java using Swing
 eclipse: 
 Kepler Release 2 for rcp/rap developer.
 Install swing designer from the kepler repo.
