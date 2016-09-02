@@ -1,5 +1,5 @@
 # Work in Progress
-# OpenCV in Java using Swing
+# OpenCV in Java using Swing <br/>
 
 Brief description:
 Captures images from webcam, and displays it realtime on a window. Also do some image processing.
@@ -20,4 +20,5 @@ What it does:
 
 
 Image processing supported:
-1. Canny.
+1. Black and White
+2. Canny.
