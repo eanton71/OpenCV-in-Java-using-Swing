@@ -1,7 +1,7 @@
 # Work in Progress
 # OpenCV in Java using Swing <br/>
 
-Brief description:
+Brief description: <br/>
 Captures images from webcam, and displays it realtime on a window. Also do some image processing.
 
 
