@@ -18,6 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JCheckBox;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import java.awt.Font;
+import javax.swing.JPanel;
 
 
 public class MainOpenCV {
@@ -126,6 +128,22 @@ public class MainOpenCV {
 		chckbxCannyInvert.setBounds(597, 63, 97, 23);
 		frame.getContentPane().add(chckbxCannyInvert);
 		
+		JButton btnBlackandwhite = new JButton("B/W");
+		btnBlackandwhite.addActionListener(new ButtonListeners(ButtonListeners.BnW));
+		btnBlackandwhite.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnBlackandwhite.setBounds(408, 89, 90, 28);
+		frame.getContentPane().add(btnBlackandwhite);
+		
+		JButton btnNoProcessing = new JButton("None");
+		btnNoProcessing.addActionListener(new ButtonListeners(ButtonListeners.None));
+		btnNoProcessing.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnNoProcessing.setBounds(408, 120, 90, 28);
+		frame.getContentPane().add(btnNoProcessing);
+		
+		//JPanel panel = new JPanel();
+		//panel.setBounds(410, 11, 200, 50);
+		//frame.getContentPane().add(panel);
+		
 		
 		camIsRunning = false;
 	}
@@ -162,8 +180,10 @@ public class MainOpenCV {
 	   }
 	
 		private class ButtonListeners implements ActionListener {
+			private static final int None		       = 0;
 			private static final int CameraButtonEvent = 1;
 			private static final int CannyButtonEvent = 2;
+			private static final int BnW		      = 3;
 			private int ButtonEvent;
 						
 			public ButtonListeners() { }
@@ -210,6 +230,10 @@ public class MainOpenCV {
 					cameraButtonProc();
 				} else if ( ButtonEvent == CannyButtonEvent) {
 					objOpenCV.setProcessMode(OpenCVProcessor.processMode_CANNY);
+				} else if (ButtonEvent == BnW) {
+					objOpenCV.setProcessMode(OpenCVProcessor.processMode_BnW);
+				} else if (ButtonEvent == None) {
+					objOpenCV.setProcessMode(OpenCVProcessor.processMode_NONE);
 				}
 			}
 		}

@@ -10,6 +10,7 @@ import org.opencv.imgproc.Imgproc;
 public class OpenCVProcessor {
 	public static final int processMode_NONE = 0;
 	public static final int processMode_CANNY= 1;
+	public static final int processMode_BnW  = 2;
 	
 	private int processMode = processMode_NONE;
 	
@@ -70,10 +71,12 @@ public class OpenCVProcessor {
 		Mat proccesedObj = obj;
 		
 		if (processMode == processMode_NONE) {
-			System.out.println("ProcessMode: NONE");
+			//System.out.println("ProcessMode: NONE");
 		} else if (processMode == processMode_CANNY) {
-			System.out.println("ProcessMode: CANNY");
+			//System.out.println("ProcessMode: CANNY");
 			proccesedObj = Canny(obj);
+		} else if (processMode == processMode_BnW) {
+			proccesedObj = BlackAndWhite(obj, 3);
 		}
 		return proccesedObj;
 	}
