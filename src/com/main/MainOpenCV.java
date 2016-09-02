@@ -13,6 +13,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
+import javax.swing.JSlider;
+import javax.swing.JLabel;
+import javax.swing.JCheckBox;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 
 public class MainOpenCV {
@@ -25,6 +30,9 @@ public class MainOpenCV {
 	private MyCanvas objCanvas;
 	private boolean camIsRunning;
 	private Thread camThread = null;
+	private JSlider sliderCannyMin;
+	private JSlider sliderCannyMax;
+	private JCheckBox chckbxCannyInvert;
 	/**
 	 * Launch the application.
 	 */
@@ -56,7 +64,7 @@ public class MainOpenCV {
 		objGrabber = new CameraGrabber(0, 60);
 		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 546, 365);
+		frame.setBounds(100, 100, 757, 361);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -70,8 +78,53 @@ public class MainOpenCV {
 		
 		JButton btnCanny = new JButton("Canny");
 		btnCanny.addActionListener(new ButtonListeners(ButtonListeners.CannyButtonEvent));
-		btnCanny.setBounds(408, 11, 89, 23);
+		btnCanny.setBounds(408, 11, 90, 75);
 		frame.getContentPane().add(btnCanny);
+		
+		sliderCannyMin = new JSlider();
+		sliderCannyMin.setValue(20);
+		sliderCannyMin.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				objOpenCV.SetCannyLoLimit(sliderCannyMin.getValue());
+			}
+		});
+		sliderCannyMin.setMaximum(255);
+		sliderCannyMin.setBounds(599, 16, 142, 23);
+		frame.getContentPane().add(sliderCannyMin);
+		
+		JLabel lblMinThreshold = new JLabel("Min Threshold");
+		lblMinThreshold.setBounds(508, 20, 81, 14);
+		frame.getContentPane().add(lblMinThreshold);
+		
+		sliderCannyMax = new JSlider();
+		sliderCannyMax.setMinorTickSpacing(1);
+		sliderCannyMax.setValue(255);
+		sliderCannyMax.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				objOpenCV.SetCannyHiLimit(sliderCannyMax.getValue());
+			}
+		});
+		sliderCannyMax.setMaximum(255);
+		sliderCannyMax.setBounds(599, 38, 142, 23);
+		frame.getContentPane().add(sliderCannyMax);
+		
+		JLabel lblMaxThreshold = new JLabel("Max Threshold");
+		lblMaxThreshold.setBounds(508, 45, 90, 14);
+		frame.getContentPane().add(lblMaxThreshold);
+		
+		JLabel lblInvert = new JLabel("Invert");
+		lblInvert.setBounds(547, 68, 38, 14);
+		frame.getContentPane().add(lblInvert);
+		
+		chckbxCannyInvert = new JCheckBox("");
+		chckbxCannyInvert.setSelected(true);
+		chckbxCannyInvert.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				objOpenCV.SetInverted(chckbxCannyInvert.isSelected());
+			}
+		});
+		chckbxCannyInvert.setBounds(597, 63, 97, 23);
+		frame.getContentPane().add(chckbxCannyInvert);
 		
 		
 		camIsRunning = false;
