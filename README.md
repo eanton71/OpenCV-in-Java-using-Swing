@@ -1,5 +1,11 @@
 # Work in Progress
 # OpenCV in Java using Swing
+
+Brief description:
+Captures images from webcam, and displays it realtime on a window. Also do some image processing.
+
+
+Setup:
 eclipse: 
 Kepler Release 2 for rcp/rap developer.
 Install swing designer from the kepler repo.
