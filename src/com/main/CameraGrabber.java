@@ -10,6 +10,9 @@ public class CameraGrabber {
 	public int CameraGetFps() { return fps; }
 	public CameraGrabber() { }
 	public CameraGrabber(int whichCamera, int fps) {
+		CameraStart(whichCamera, fps);
+	}
+	public void CameraStart(int whichCamera, int fps) {
 		Camera = new VideoCapture(0);
 		Camera.open(whichCamera);
 		this.fps = 1000/fps;

@@ -1,3 +1,7 @@
+//To create a stand-alone application, export->runnable jar->packaged required library..
+//then call by java -Djava.library.path="C:<opencv_path>\opencv\2.4.11\build\java\x86" -jar gui1.jar .
+
+
 package com.main;
 
 import java.awt.Color;
@@ -70,6 +74,11 @@ public class MainOpenCV {
 		frame = new JFrame();
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent arg0) {
+				if (camIsRunning) {
+					camIsRunning = false;
+					camThread.stop();
+					camThread = null;
+				}
 				objGrabber.Close();
 			}
 		});
@@ -171,7 +180,7 @@ public class MainOpenCV {
 	         if (img != null) {
 	        	 g2.drawImage( img, 0, 0, getWidth(), getHeight(), null); 
 	         }
-	         //g2.drawString ("It is a custom canvas area", 70, 70);
+	         //g2.drawString ("This is is a string", 0 + 10, getHeight() - 10);
 	      }
 	      public void repaint() {
 	    	  	super.repaint();	  
@@ -209,11 +218,11 @@ public class MainOpenCV {
 								matImg.get(0, 0, ((DataBufferByte)bufImg.getRaster().getDataBuffer()).getData());
 								objCanvas.setImage(bufImg);
 								objCanvas.repaint();
-								
+									
 								try {
 									Thread.sleep(objGrabber.CameraGetFps());
 								} catch (Exception e) {
-									
+										
 								}
 							}
 						};
