@@ -20,6 +20,8 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.Font;
 import javax.swing.JPanel;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
 public class MainOpenCV {
@@ -66,6 +68,11 @@ public class MainOpenCV {
 		objGrabber = new CameraGrabber(0, 60);
 		
 		frame = new JFrame();
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent arg0) {
+				objGrabber.Close();
+			}
+		});
 		frame.setBounds(100, 100, 757, 361);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
