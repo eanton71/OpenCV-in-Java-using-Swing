@@ -22,4 +22,4 @@ What it does: <br/>
 <br/>
 What's working now: <br/>
 1. Black and White <br/>
-2. Canny. <br/>
+2. Canny Edge detection. <br/>
